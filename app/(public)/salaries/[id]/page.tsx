@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { TCDisplay } from "@/components/ui/TCDisplay";
 import { prisma } from "@/lib/prisma";
 import { formatCurrency } from "@/lib/tc-calculator";
+import { CompanyLogo } from "@/components/ui/CompanyLogo";
 import { ArrowLeft, Building2, MapPin, Calendar, CheckCircle, ShieldAlert } from "lucide-react";
 
 export const dynamic = "force-dynamic"; // Render detail page dynamically on demand
@@ -64,18 +65,11 @@ export default async function SalaryDetailPage({ params }: PageProps) {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div className="flex items-center space-x-4">
                 <div className="h-14 w-14 bg-bg-elevated border border-bg-border rounded-lg flex items-center justify-center overflow-hidden">
-                  {entry.company.logoUrl ? (
-                    <img
-                      src={entry.company.logoUrl}
-                      alt={entry.company.canonicalName}
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = "none";
-                      }}
-                      className="h-10 w-10 object-contain"
-                    />
-                  ) : (
-                    <Building2 className="h-7 w-7 text-text-secondary" />
-                  )}
+                  <CompanyLogo
+                    logoUrl={entry.company.logoUrl}
+                    name={entry.company.canonicalName}
+                    className="h-10 w-10"
+                  />
                 </div>
                 <div>
                   <h1 className="text-xl font-extrabold text-text-primary">{entry.jobTitle}</h1>

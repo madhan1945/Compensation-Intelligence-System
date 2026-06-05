@@ -7,6 +7,7 @@ import SalaryTable from "@/components/salary/SalaryTable";
 import { prisma } from "@/lib/prisma";
 import { TCDisplay } from "@/components/ui/TCDisplay";
 import { formatCurrency } from "@/lib/tc-calculator";
+import { CompanyLogo } from "@/components/ui/CompanyLogo";
 import { ArrowLeft, Building2, MapPin, Briefcase, IndianRupee } from "lucide-react";
 import Image from "next/image";
 
@@ -210,19 +211,11 @@ export default async function CompanyProfilePage({ params }: PageProps) {
           <div className="rounded-xl border border-bg-border bg-bg-card p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-sm">
             <div className="flex items-center space-x-4">
               <div className="h-16 w-16 bg-bg-elevated border border-bg-border rounded-lg flex items-center justify-center overflow-hidden">
-                {company.logoUrl ? (
-                  <img
-                    src={company.logoUrl}
-                    alt={company.canonicalName}
-                    onError={(e) => {
-                      // Fallback if Clearbit logo fails
-                      (e.target as HTMLElement).style.display = "none";
-                    }}
-                    className="h-12 w-12 object-contain"
-                  />
-                ) : (
-                  <Building2 className="h-8 w-8 text-text-secondary" />
-                )}
+                <CompanyLogo
+                  logoUrl={company.logoUrl}
+                  name={company.canonicalName}
+                  className="h-12 w-12"
+                />
               </div>
               <div>
                 <h1 className="text-3xl font-extrabold tracking-tight text-text-primary">
