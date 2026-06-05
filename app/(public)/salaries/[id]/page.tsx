@@ -8,6 +8,8 @@ import { prisma } from "@/lib/prisma";
 import { formatCurrency } from "@/lib/tc-calculator";
 import { ArrowLeft, Building2, MapPin, Calendar, CheckCircle, ShieldAlert } from "lucide-react";
 
+export const dynamic = "force-dynamic"; // Render detail page dynamically on demand
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }

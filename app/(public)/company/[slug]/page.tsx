@@ -10,7 +10,7 @@ import { formatCurrency } from "@/lib/tc-calculator";
 import { ArrowLeft, Building2, MapPin, Briefcase, IndianRupee } from "lucide-react";
 import Image from "next/image";
 
-export const revalidate = 60; // Cache and revalidate company profiles every minute
+export const dynamic = "force-dynamic"; // Render profile dynamically on demand
 
 interface PageProps {
   params: Promise<{ slug: string }>;

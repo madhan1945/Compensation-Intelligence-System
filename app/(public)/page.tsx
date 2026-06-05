@@ -7,7 +7,7 @@ import SalaryTable from "@/components/salary/SalaryTable";
 import { prisma } from "@/lib/prisma";
 import { ArrowRight, Building2, MapPin, NotebookPen } from "lucide-react";
 
-export const revalidate = 60; // Revalidate home page statistics every minute
+export const dynamic = "force-dynamic"; // Render page on demand to show real-time stats
 
 export default async function HomePage() {
   // Direct database aggregates for statistics
