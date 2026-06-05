@@ -30,19 +30,10 @@ export default function SalaryFilters() {
   });
   const [minTc, setMinTc] = useState(searchParams.get("minTc") || "");
 
-  // Debouncing company search
-  const isFirstMount = useRef(true);
-  useEffect(() => {
-    if (isFirstMount.current) {
-      isFirstMount.current = false;
-      return;
-    }
-    const timer = setTimeout(() => {
-      updateUrl({ company });
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [company]);
+  const handleCompanySearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateUrl({ company });
+  };
 
   const updateUrl = (updatedParams: Record<string, string | null>) => {
     const current = new URLSearchParams(Array.from(searchParams.entries()));
@@ -90,7 +81,6 @@ export default function SalaryFilters() {
   const handleMinTcChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setMinTc(val);
-    updateUrl({ minTc: val });
   };
 
   const handleClearAll = () => {
@@ -111,21 +101,23 @@ export default function SalaryFilters() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         {/* Search */}
-        <div className="relative">
+        <form onSubmit={handleCompanySearchSubmit} className="relative">
           <label className="block text-xs font-semibold text-text-secondary mb-1">
             Search Company
           </label>
           <div className="relative">
-            <Search className="absolute top-2.5 left-3 h-4.5 w-4.5 text-text-muted" />
+            <button type="submit" className="absolute top-2.5 left-3 h-4.5 w-4.5 text-text-muted hover:text-text-primary transition-colors cursor-pointer bg-transparent border-0 p-0 flex items-center justify-center">
+              <Search className="h-4.5 w-4.5" />
+            </button>
             <input
               type="text"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
-              placeholder="e.g. Google"
+              placeholder="Press Enter to search"
               className="w-full rounded-md border border-bg-border bg-bg-elevated py-2 pl-9 pr-3 text-sm text-text-primary placeholder-text-muted focus:border-accent-blue focus:outline-none"
             />
           </div>
-        </div>
+        </form>
 
         {/* City Dropdown */}
         <div>
@@ -173,6 +165,12 @@ export default function SalaryFilters() {
             type="number"
             value={minTc}
             onChange={handleMinTcChange}
+            onBlur={() => updateUrl({ minTc })}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                updateUrl({ minTc });
+              }
+            }}
             placeholder="e.g. 2000000"
             className="w-full rounded-md border border-bg-border bg-bg-elevated py-2 px-3 text-sm text-text-primary placeholder-text-muted focus:border-accent-blue focus:outline-none"
           />

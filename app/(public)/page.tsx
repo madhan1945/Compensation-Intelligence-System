@@ -64,7 +64,7 @@ export default async function HomePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               {/* Stat 1 */}
-              <div className="rounded-xl border border-bg-border bg-bg-card p-6 flex items-center space-x-4">
+              <div className="rounded-xl border border-bg-border bg-bg-card p-6 flex items-center space-x-4 hover-lift hover:border-accent-blue/30 transition-all duration-300">
                 <div className="p-3 rounded-lg bg-accent-blue/10 text-accent-blue">
                   <NotebookPen className="h-6 w-6" />
                 </div>
@@ -79,7 +79,7 @@ export default async function HomePage() {
               </div>
 
               {/* Stat 2 */}
-              <div className="rounded-xl border border-bg-border bg-bg-card p-6 flex items-center space-x-4">
+              <div className="rounded-xl border border-bg-border bg-bg-card p-6 flex items-center space-x-4 hover-lift hover:border-accent-gold/30 transition-all duration-300">
                 <div className="p-3 rounded-lg bg-accent-gold/10 text-accent-gold">
                   <Building2 className="h-6 w-6" />
                 </div>
@@ -94,7 +94,7 @@ export default async function HomePage() {
               </div>
 
               {/* Stat 3 */}
-              <div className="rounded-xl border border-bg-border bg-bg-card p-6 flex items-center space-x-4">
+              <div className="rounded-xl border border-bg-border bg-bg-card p-6 flex items-center space-x-4 hover-lift hover:border-accent-green/30 transition-all duration-300">
                 <div className="p-3 rounded-lg bg-accent-green/10 text-accent-green">
                   <MapPin className="h-6 w-6" />
                 </div>
@@ -123,10 +123,10 @@ export default async function HomePage() {
               </div>
               <Link
                 href="/salaries"
-                className="flex items-center space-x-1 text-sm font-semibold text-accent-blue hover:text-blue-400 transition-colors cursor-pointer"
+                className="flex items-center space-x-1.5 text-sm font-bold text-accent-blue hover:text-blue-400 transition-colors cursor-pointer group"
               >
                 <span>View All Salaries</span>
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
 
@@ -141,7 +141,7 @@ export default async function HomePage() {
             </div>
 
             {/* CTA */}
-            <div className="rounded-xl border border-bg-border bg-gradient-to-r from-bg-card to-bg-elevated/45 p-8 text-center sm:p-10 space-y-4">
+            <div className="rounded-2xl border border-bg-border bg-gradient-to-r from-bg-card via-bg-card to-bg-elevated/50 p-8 text-center sm:p-10 space-y-4 shadow-xl transition-all duration-300 hover:border-accent-blue/30">
               <h3 className="text-xl font-bold text-text-primary">Contributed to the community?</h3>
               <p className="mx-auto max-w-lg text-sm text-text-secondary">
                 Submit your salary data anonymously in under 2 minutes. Your data helps other professionals negotiate fair pay.
@@ -149,7 +149,7 @@ export default async function HomePage() {
               <div className="pt-2">
                 <Link
                   href="/submit"
-                  className="rounded-md bg-accent-blue px-5 py-2.5 text-sm font-semibold text-text-primary hover:bg-blue-600 transition-colors inline-block"
+                  className="rounded-lg bg-accent-blue px-6 py-3 text-sm font-bold text-text-primary hover:bg-blue-600 shadow-lg shadow-accent-blue/10 hover:shadow-accent-blue/20 transition-all duration-200 inline-block active:scale-95"
                 >
                   Submit Your Salary Anonymously
                 </Link>

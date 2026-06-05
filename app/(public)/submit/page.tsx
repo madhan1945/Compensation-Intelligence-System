@@ -248,9 +248,9 @@ export default function SubmitPage() {
             {[1, 2, 3].map((s) => (
               <div key={s} className="flex items-center flex-grow last:flex-grow-0">
                 <div
-                  className={`h-8 w-8 rounded-full flex items-center justify-center text-sm font-bold border transition-colors ${
+                  className={`h-9 w-9 rounded-full flex items-center justify-center text-sm font-extrabold border transition-all duration-300 ${
                     step >= s
-                      ? "bg-accent-blue border-accent-blue text-text-primary"
+                      ? "bg-accent-blue border-accent-blue text-text-primary shadow-[0_0_15px_rgba(59,130,246,0.35)] scale-105"
                       : "bg-bg-card border-bg-border text-text-secondary"
                   }`}
                 >
@@ -258,7 +258,7 @@ export default function SubmitPage() {
                 </div>
                 {s < 3 && (
                   <div
-                    className={`h-0.5 flex-grow mx-2 transition-colors ${
+                    className={`h-0.5 flex-grow mx-2 transition-colors duration-300 ${
                       step > s ? "bg-accent-blue" : "bg-bg-border"
                     }`}
                   ></div>
@@ -302,7 +302,7 @@ export default function SubmitPage() {
 
                   {/* Autocomplete suggestions */}
                   {suggestions.length > 0 && (
-                    <div className="absolute left-0 right-0 z-10 mt-1 rounded-md border border-bg-border bg-bg-card shadow-lg overflow-hidden">
+                    <div className="absolute left-0 right-0 z-10 mt-1.5 rounded-xl border border-bg-border bg-bg-card/90 backdrop-blur-md shadow-2xl overflow-hidden">
                       {suggestions.map((c) => (
                         <button
                           key={c}
@@ -311,7 +311,7 @@ export default function SubmitPage() {
                             setCompanyName(c);
                             setSuggestions([]);
                           }}
-                          className="w-full px-4 py-2.5 text-left text-sm text-text-primary hover:bg-bg-elevated transition-colors cursor-pointer"
+                          className="w-full px-4 py-3 text-left text-sm text-text-primary hover:bg-accent-blue/15 hover:text-accent-blue transition-colors cursor-pointer font-medium"
                         >
                           {c}
                         </button>
