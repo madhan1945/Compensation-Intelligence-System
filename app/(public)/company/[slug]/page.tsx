@@ -16,6 +16,29 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  const company = await prisma.company.findUnique({
+    where: { slug },
+    select: { canonicalName: true },
+  });
+
+  if (!company) {
+    return {
+      title: "Company Salaries | CompensationIQ",
+    };
+  }
+
+  const entriesCount = await prisma.salaryEntry.count({
+    where: { company: { slug } },
+  });
+
+  return {
+    title: `${company.canonicalName} Salaries & Compensation | CompensationIQ`,
+    description: `Browse ${entriesCount} salary and total compensation entries for ${company.canonicalName}. Explore averages by engineering levels and years of experience.`,
+  };
+}
+
 export default async function CompanyProfilePage({ params }: PageProps) {
   const { slug } = await params;
 
