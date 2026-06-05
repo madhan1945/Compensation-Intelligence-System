@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String?
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  submissions   SalaryEntry[]
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Company {
+  id             String        @id @default(cuid())
+  name           String        // Raw submitted name
+  canonicalName  String        // Normalized (e.g., "Google")
+  slug           String        @unique  // URL-safe (e.g., "google")
+  industry       String?
+  headquarters   String?
+  logoUrl        String?
+  createdAt      DateTime      @default(now())
+  salaryEntries  SalaryEntry[]
+
+  @@index([canonicalName])
+  @@index([slug])
+}
+
+model SalaryEntry {
+  id              String   @id @default(cuid())
+  companyId       String
+  company         Company  @relation(fields: [companyId], references: [id])
+  submittedById   String?
+  submittedBy     User?    @relation(fields: [submittedById], references: [id])
+
+  // Role info
+  jobTitle        String
+  level           String   // e.g., "L3", "L4", "SDE-II", "Senior"
+  department      String?  // e.g., "Engineering", "Product", "Design"
+  yearsOfExp      Int      // Total years of experience
+
+  // Location
+  city            String
+  country         String   @default("India")
+  remote          Boolean  @default(false)
+
+  // Compensation (all values in INR per year, or USD if currency = "USD")
+  currency        String   @default("INR")
+  baseSalary      Float    // Annual base
+  annualBonus     Float    @default(0)   // Target annual bonus
+  signingBonus    Float    @default(0)
+  stockValue      Float    @default(0)   // Total grant value
+  vestingYears    Int      @default(4)   // Vesting period
+  totalComp       Float    // Computed: base + bonus + (stock/vestingYears)
+
+  // Metadata
+  verified        Boolean  @default(false)
+  anonymous       Boolean  @default(true)
+  submittedAt     DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([companyId])
+  @@index([jobTitle])
+  @@index([level])
+  @@index([city])
+  @@index([yearsOfExp])
+  @@index([totalComp])
+}
