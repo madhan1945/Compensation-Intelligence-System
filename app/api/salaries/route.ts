@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { prisma } from "../../../lib/prisma";
-import { SalaryFilterSchema, SalarySubmissionSchema } from "../../../lib/validations";
-import { normalizeCompanyName, normalizeCity, toSlug } from "../../../lib/normalize";
-import { calculateTotalComp } from "../../../lib/tc-calculator";
-import { apiError, handleZodError } from "../../../lib/api-utils";
+import { prisma } from "@/lib/prisma";
+import { SalaryFilterSchema, SalarySubmissionSchema } from "@/lib/validations";
+import { normalizeCompanyName, normalizeCity, toSlug } from "@/lib/normalize";
+import { calculateTotalComp } from "@/lib/tc-calculator";
+import { apiError, handleZodError } from "@/lib/api-utils";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../../lib/auth";
+import { authOptions } from "@/lib/auth";
 
 // Rate limiting: Map<ip, { count: number, resetAt: number }>
 const rateLimits = new Map<string, { count: number; resetAt: number }>();
