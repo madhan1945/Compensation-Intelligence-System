@@ -32,7 +32,7 @@
   --foreground: var(--text-primary);
 }
 
-[data-theme="light"] {
+:root[data-theme="light"] {
   --bg-primary: #F8F9FC;
   --bg-card: #FFFFFF;
   --bg-elevated: #F1F3F9;
