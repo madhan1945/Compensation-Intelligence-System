@@ -73,12 +73,11 @@ export default async function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-b from-accent-blue/5 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="flex items-center justify-between border-b border-bg-border/60 pb-3.5 mb-5">
                 <div className="flex items-center space-x-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-accent-red/60"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-accent-gold/60"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-accent-green/60"></span>
+                  <span className="w-2 h-2 rounded-full bg-bg-border"></span>
+                  <span className="w-2 h-2 rounded-full bg-bg-border"></span>
+                  <span className="w-2 h-2 rounded-full bg-bg-border"></span>
                 </div>
-                <span className="text-[10px] font-mono font-bold tracking-wider text-text-muted uppercase">Salary Analytics (Interactive Preview)</span>
-                <span className="w-4.5 h-4.5 rounded-full bg-bg-elevated/85 border border-bg-border/40 flex items-center justify-center text-[9px] font-bold text-text-secondary">?</span>
+                <span className="text-[10px] font-mono font-bold tracking-wider text-text-muted uppercase">Salary Analytics Preview</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
@@ -124,7 +123,7 @@ export default async function HomePage() {
                   <div className="space-y-2">
                     <span className="text-[9px] font-bold text-accent-gold uppercase tracking-wider bg-accent-gold/10 px-2.5 py-0.5 rounded border border-accent-gold/15">Negotiation TIP</span>
                     <p className="text-xs text-text-secondary leading-relaxed">
-                      Google L4 base salaries in India center around **₹22-24L**. Focus negotiating on stock grants/RSUs, which yield the highest variance and average **26%** of total compensation.
+                      Google L4 base salaries in India center around <span className="font-bold text-text-primary">₹22-24L</span>. Focus negotiating on stock grants/RSUs, which yield the highest variance and average <span className="font-bold text-text-primary">26%</span> of total compensation.
                     </p>
                   </div>
                   <div className="flex items-center justify-between border-t border-bg-border/40 pt-3 mt-4 text-[10px] text-text-muted font-semibold">
