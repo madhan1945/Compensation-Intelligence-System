@@ -19,6 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 import { Providers } from "@/app/providers";
 import AuthGateRedirect from "@/components/layout/AuthGateRedirect";
+import { CookieConsent } from "@/components/ui/CookieConsent";
 
 export const metadata: Metadata = {
   title: "CompensationIQ | Real Salary & Compensation Data",
@@ -55,6 +56,7 @@ export default function RootLayout({
         <Providers>
           <AuthGateRedirect />
           {children}
+          <CookieConsent />
         </Providers>
       </body>
     </html>
