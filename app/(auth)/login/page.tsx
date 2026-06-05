@@ -21,6 +21,7 @@ export default function LoginPage() {
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const errorParam = searchParams.get("error");
   const registeredParam = searchParams.get("registered");
+  const reasonParam = searchParams.get("reason");
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -30,12 +31,14 @@ export default function LoginPage() {
     }
   }, [status, callbackUrl, router]);
 
-  // Show registration success message
+  // Show registration success message or auth gate redirection notice
   useEffect(() => {
     if (registeredParam === "true") {
       setSuccessMessage("Account created successfully! Please sign in below.");
+    } else if (reasonParam === "gate") {
+      setSuccessMessage("Please sign in or create an account to continue browsing CompensationIQ.");
     }
-  }, [registeredParam]);
+  }, [registeredParam, reasonParam]);
 
   // Handle auth errors from query params
   useEffect(() => {

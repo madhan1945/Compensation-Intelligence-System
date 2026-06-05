@@ -18,6 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 import { Providers } from "@/app/providers";
+import AuthGateRedirect from "@/components/layout/AuthGateRedirect";
 
 export const metadata: Metadata = {
   title: "CompensationIQ | Real Salary & Compensation Data",
@@ -34,8 +35,25 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme') || 'dark';
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary">
-        <Providers>{children}</Providers>
+        <Providers>
+          <AuthGateRedirect />
+          {children}
+        </Providers>
       </body>
     </html>
   );

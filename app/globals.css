@@ -1,30 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #0A0A0F;
-  --color-bg-card: #111118;
-  --color-bg-elevated: #18181F;
-  --color-bg-border: #2A2A35;
-  --color-accent-green: #00D97E;
-  --color-accent-red: #FF4757;
-  --color-accent-blue: #3B82F6;
-  --color-accent-gold: #F59E0B;
-  --color-text-primary: #F8F8FF;
-  --color-text-secondary: #9999AA;
-  --color-text-muted: #555566;
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-border: var(--bg-border);
+  --color-accent-green: var(--accent-green);
+  --color-accent-red: var(--accent-red);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-gold: var(--accent-gold);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
   --font-mono: var(--font-jetbrains-mono), var(--font-geist-mono), monospace;
 }
 
 :root {
-  --background: #0A0A0F;
-  --foreground: #F8F8FF;
+  --bg-primary: #0A0A0F;
+  --bg-card: #111118;
+  --bg-elevated: #18181F;
+  --bg-border: #2A2A35;
+  --accent-green: #00D97E;
+  --accent-red: #FF4757;
+  --accent-blue: #3B82F6;
+  --accent-gold: #F59E0B;
+  --text-primary: #F8F8FF;
+  --text-secondary: #9999AA;
+  --text-muted: #555566;
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+}
+
+[data-theme="light"] {
+  --bg-primary: #F8F9FC;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #F1F3F9;
+  --bg-border: #D8DBE5;
+  --accent-green: #00AA62;
+  --accent-red: #E0313F;
+  --accent-blue: #1D4ED8;
+  --accent-gold: #D97706;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Smooth scrolling */
@@ -38,9 +66,9 @@ html {
 }
 
 .glass-card {
-  background: rgba(17, 17, 24, 0.75) !important;
+  background: var(--bg-card) !important;
   backdrop-filter: blur(16px);
-  border-color: rgba(42, 42, 53, 0.65) !important;
+  border-color: var(--bg-border) !important;
 }
 
 .hover-glow-blue {
@@ -48,7 +76,7 @@ html {
 }
 .hover-glow-blue:hover {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);
-  border-color: rgba(59, 130, 246, 0.55) !important;
+  border-color: var(--accent-blue) !important;
 }
 
 .hover-glow-green {
@@ -56,7 +84,7 @@ html {
 }
 .hover-glow-green:hover {
   box-shadow: 0 0 20px rgba(0, 217, 126, 0.12);
-  border-color: rgba(0, 217, 126, 0.55) !important;
+  border-color: var(--accent-green) !important;
 }
 
 .hover-lift {
@@ -64,8 +92,8 @@ html {
 }
 .hover-lift:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-  border-color: rgba(59, 130, 246, 0.3) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.25);
+  border-color: var(--accent-blue) !important;
 }
 
 /* Custom modern scrollbar */
@@ -74,15 +102,15 @@ html {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0F;
+  background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2A2A35;
+  background: var(--bg-border);
   border-radius: 4px;
   transition: background-color 0.2s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3B82F6;
+  background: var(--accent-blue);
 }
 
 /* Custom interactive input focus styles */
@@ -90,9 +118,9 @@ input, select, textarea {
   transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: #3B82F6 !important;
+  border-color: var(--accent-blue) !important;
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15) !important;
-  background-color: rgba(24, 24, 31, 0.8) !important;
+  background-color: var(--bg-elevated) !important;
   outline: none;
 }
 
@@ -103,4 +131,3 @@ button, a, .clickable-card {
 button:active, a:active, .clickable-card:active {
   transform: scale(0.985);
 }
-

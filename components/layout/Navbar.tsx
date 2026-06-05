@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
 import { Menu, X, DollarSign, BarChart3, PlusCircle } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -15,7 +16,7 @@ export default function Navbar() {
         <div className="flex h-16 justify-between items-center">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-xl font-extrabold tracking-wider font-mono text-text-primary">
+              <span className="text-xl font-extrabold tracking-wider font-mono text-text-primary animate-pulse-slow">
                 Compensation<span className="text-accent-blue font-bold">IQ</span>
               </span>
             </Link>
@@ -25,25 +26,29 @@ export default function Navbar() {
           <div className="hidden md:flex md:items-center md:space-x-6">
             <Link
               href="/salaries"
-              className="flex items-center space-x-1 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+              className="flex items-center space-x-1.5 text-sm font-semibold text-text-secondary hover:text-text-primary transition-colors"
             >
               <DollarSign className="h-4 w-4" />
               <span>Browse Salaries</span>
             </Link>
             <Link
               href="/compare"
-              className="flex items-center space-x-1 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+              className="flex items-center space-x-1.5 text-sm font-semibold text-text-secondary hover:text-text-primary transition-colors"
             >
               <BarChart3 className="h-4 w-4" />
               <span>Compare</span>
             </Link>
             <Link
               href="/submit"
-              className="flex items-center space-x-1 text-sm font-medium text-accent-green hover:brightness-110 transition-all bg-accent-green/10 border border-accent-green/20 px-3 py-1.5 rounded-full"
+              className="flex items-center space-x-1.5 text-sm font-bold text-accent-green hover:brightness-110 transition-all bg-accent-green/10 border border-accent-green/20 px-3.5 py-1.5 rounded-full"
             >
               <PlusCircle className="h-4 w-4" />
               <span>Submit Salary</span>
             </Link>
+
+            <div className="h-5 w-px bg-bg-border"></div>
+            
+            <ThemeToggle />
 
             <div className="h-5 w-px bg-bg-border"></div>
 
@@ -54,7 +59,7 @@ export default function Navbar() {
                 </span>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="rounded-md bg-bg-elevated border border-bg-border px-3 py-1.5 text-xs font-semibold text-text-primary hover:bg-bg-border transition-colors cursor-pointer"
+                  className="rounded-md bg-bg-elevated border border-bg-border px-3.5 py-1.5 text-xs font-semibold text-text-primary hover:bg-bg-border transition-colors cursor-pointer"
                 >
                   Sign Out
                 </button>
@@ -69,7 +74,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   href="/register"
-                  className="rounded-md bg-accent-blue px-3.5 py-1.5 text-sm font-semibold text-text-primary hover:bg-blue-600 transition-colors"
+                  className="rounded-md bg-accent-blue px-4 py-2 text-sm font-semibold text-text-primary hover:bg-blue-600 transition-colors"
                 >
                   Register
                 </Link>
@@ -113,6 +118,13 @@ export default function Navbar() {
           >
             Submit Salary
           </Link>
+
+          <div className="my-2 border-t border-bg-border"></div>
+
+          <div className="flex justify-between items-center px-3 py-2">
+            <span className="text-sm font-semibold text-text-secondary">Toggle Theme</span>
+            <ThemeToggle />
+          </div>
 
           <div className="my-2 border-t border-bg-border"></div>
 
