@@ -9,7 +9,17 @@ function createPrismaClient() {
   if (!connectionString) {
     throw new Error("DATABASE_URL environment variable is not defined");
   }
-  const pool = new pg.Pool({ connectionString });
+  const pool = new pg.Pool({
+    connectionString,
+    max: 10,
+    idleTimeoutMillis: 1000,
+    connectionTimeoutMillis: 5000,
+  });
+  
+  pool.on("error", (err) => {
+    console.error("Unexpected error on idle pg client:", err);
+  });
+
   const adapter = new PrismaPg(pool);
   return new PrismaClient({
     adapter,
