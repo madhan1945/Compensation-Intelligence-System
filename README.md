@@ -81,6 +81,16 @@ Below is the directory layout showing only the essential source code files:
 
 ---
 
+## 🏗️ Architecture decisions
+Key design decisions are recorded in [docs/ADR.md](docs/ADR.md):
+1. **Next.js API Routes** for backend logic to maintain single-repo simplicity.
+2. **PostgreSQL & Prisma** for relational data safety and type-safe schema queries.
+3. **Neon Serverless** for edge-optimized PostgreSQL deployment.
+4. **Canonical Name Normalization** to merge variations like "Google LLC" and "Alphabet" under a single company profile.
+5. **Computed & Indexed TC** to ensure total compensation queries are fast and performant.
+
+---
+
 ## 💻 Local Setup & Development
 
 ### 1. Install dependencies
