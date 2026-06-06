@@ -10,6 +10,10 @@ export default function AuthGateRedirect() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Bypass auth redirect if user clicked "Continue as guest"
+    const isGuestMode = sessionStorage.getItem("guest-mode") === "true";
+    if (isGuestMode) return;
+
     // Only apply if user is unauthenticated, and they are not already on login/register pages
     if (status === "unauthenticated" && pathname !== "/login" && pathname !== "/register") {
       const timer = setTimeout(() => {

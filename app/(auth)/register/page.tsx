@@ -211,6 +211,7 @@ export default function RegisterPage() {
           <div className="mt-4 text-center">
             <Link
               href="/"
+              onClick={() => sessionStorage.setItem("guest-mode", "true")}
               className="text-xs font-semibold text-text-muted hover:text-text-secondary transition-colors"
             >
               Continue as guest
