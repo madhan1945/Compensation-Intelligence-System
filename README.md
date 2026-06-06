@@ -183,3 +183,9 @@ Open `http://localhost:3000` to browse the app.
 *   **Verification System:** Add file uploads (W-2s, paystubs, offer letters) to verify salary data and mark entries with a verified checkmark.
 *   **OAuth Integrations:** Full integration of Google & GitHub OAuth login flows.
 *   **Search Autocomplete Expansion:** Migrate local autocomplete queries to an external service (like Clearbit autocomplete API) for international company validation.
+
+---
+
+<div align="center">
+  <sub>Built by <a href="https://github.com/madhan1945" target="_blank">madhan1945</a></sub>
+</div>
